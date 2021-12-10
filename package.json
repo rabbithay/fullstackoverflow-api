@@ -1,0 +1,48 @@
+{
+  "name": "create-node-template",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules --es-module-specifier-resolution=node src/server.js",
+    "test": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --silent",
+    "test:verbose": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --verbose",
+    "test:watch": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --watch",
+    "dev": "NODE_ENV=dev nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabbithay/my-nodejs-template.git"
+  },
+  "keywords": [],
+  "author": "https://github.com/rabbithay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rabbithay/my-nodejs-template/issues"
+  },
+  "homepage": "https://github.com/rabbithay/my-nodejs-template#readme",
+  "dependencies": {
+    "bcrypt": "5.0.1",
+    "cors": "2.8.5",
+    "dotenv": "10.0.0",
+    "express": "4.17.1",
+    "express-async-errors": "3.1.1",
+    "joi": "17.4.3",
+    "pg": "8.7.1",
+    "uuid": "8.3.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.16.4",
+    "@babel/preset-env": "7.16.4",
+    "babel-jest": "27.4.2",
+    "eslint": "8.3.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.3",
+    "faker": "5.5.3",
+    "husky": "7.0.4",
+    "jest": "27.4.3",
+    "nodemon": "2.0.15",
+    "supertest": "6.1.6"
+  }
+}

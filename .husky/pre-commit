@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+# the following lines are commented to commit this template, 
+# but must be uncommented in a real project
+
+# yarn run eslint src
+# yarn test
+
