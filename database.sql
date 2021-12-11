@@ -2,12 +2,12 @@ CREATE TABLE "questions" (
 	"question_id" serial NOT NULL,
 	"question_text" TEXT NOT NULL,
 	"question_tags" TEXT,
-	"created_by" integer NOT NULL,
+	"created_by_student" TEXT NOT NULL,
+	"created_by_class" TEXT NOT NULL,
 	"created_at" timestamp with time zone NOT NULL DEFAULT 'NOW()',
 	"answered" BOOLEAN NOT NULL DEFAULT 'false',
 	"question_score" integer NOT NULL DEFAULT '1',
 	CONSTRAINT "questions_pk" PRIMARY KEY ("question_id")
-
 );
 
 CREATE TABLE "users" (
@@ -16,7 +16,6 @@ CREATE TABLE "users" (
 	"user_class" TEXT NOT NULL,
 	"token" TEXT NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("user_id")
-
 );
 
 CREATE TABLE "answers" (

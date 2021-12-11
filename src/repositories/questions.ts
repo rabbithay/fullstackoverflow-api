@@ -11,9 +11,9 @@ export interface UserInfo {
 }
 
 export interface QuestionInfo {
-  id: number;
+  id?: number;
   question: string;
-  student: UserInfo;
+  student: string;
   class: string;
   tags: string;
   answered: boolean;
@@ -21,7 +21,7 @@ export interface QuestionInfo {
   answeredAt?: number;
   answeredBy?: string;
   answer?: string;
-  points: number;
+  points?: number;
 }
 
 export async function insertQuestion(questionInfo: NewQuestionInfo) {
@@ -38,8 +38,48 @@ export async function insertQuestion(questionInfo: NewQuestionInfo) {
   return id;
 }
 
-export async function selectQuestionById() {
-  //
+export async function selectQuestionById(id: QuestionInfo['id']) {
+  const resolve = await connection.query(`
+    SELECT
+    question_text AS question,
+    created_by_student AS student,
+    created_by_class AS class,
+    question_tags AS tags,
+    answered,
+    created_at AS 'submitAt'
+    FROM questions
+    WHERE question_id = $1
+  `, [id]);
+  const {question, student, class, tags, answered, submitAt} : QuestionInfo = resolve.rows[0];
+  const response = {question, student, class, tags, answered, submitAt};
+  return response;
+}
+
+export async function selectAnswerById(id: QuestionInfo['id']){
+  const answerResponse = await connection.query(`
+    SELECT
+    created_at AS 'answeredAt',
+    answer_text AS answer
+    FROM answers
+    WHERE question_id = $1
+  `, [id]);
+
+  const userAnswer = await connection.query(`
+    SELECT user_name AS 'answeredBy'
+    FROM users JOIN answers
+    WHERE user_id = created_by
+  `)
+
+  const {answeredAt, answer}: {
+    answeredAt: QuestionInfo['answeredAt'], answer: QuestionInfo['answer']
+  } = answerResponse.rows[0];
+
+  const {answeredBy} : {answeredBy: QuestionInfo['answeredBy']} = userAnswer.rows[0];
+
+  const response = {answeredAt, answeredBy, answer}
+
+  return response
+
 }
 
 export async function insertAnswer() {

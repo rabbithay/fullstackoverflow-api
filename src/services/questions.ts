@@ -17,6 +17,13 @@ export async function createQuestion(questionInfo: NewQuestionInfo) {
   return id;
 }
 
-export async function getUser() {
-  //
+export async function getQuestionById(id: number) {
+  const question = await questionRepositories.selectQuestionById(id);
+
+  if (question.answered) {
+    const answer = await questionRepositories.selectAnswerById(id);
+    return { ...question, ...answer };
+  }
+
+  return question;
 }
