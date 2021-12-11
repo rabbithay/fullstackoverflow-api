@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'no-unsafe-optional-chaining': 'off',
     'import/prefer-default-export': 0,
   },
 };

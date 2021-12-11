@@ -1,9 +1,8 @@
 import Joi from 'joi';
 
-const newUserSchema = Joi.object({
-   
+export const newQuestionSchema = Joi.object({
+  question: Joi.string().required(),
+  student: Joi.string().required(),
+  class: Joi.string().required(),
+  tags: Joi.string().allow(null, ''),
 });
-
-export default {
-    newUserSchema
-}
