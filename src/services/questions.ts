@@ -36,3 +36,8 @@ export async function getUserByToken(token: string) {
 export async function answerQuestion(answer: NewAnswerInfo) {
   await questionRepositories.insertAnswer(answer);
 }
+
+export async function getQuestions() {
+  const questions = await questionRepositories.selectUnansweredQuestions();
+  return questions;
+}

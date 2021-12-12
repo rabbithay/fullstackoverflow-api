@@ -108,10 +108,35 @@ export async function insertAnswer(answerInfo: NewAnswerInfo) {
     VALUES ($1, $2, $3)
     RETURNING question_id AS id
   `, [questionId, answer, answeredBy]);
+
+  await connection.query(`
+    UPDATE questions
+    SET answered = true
+    WHERE question_id = $1
+  `, [questionId])
 }
 
+// {
+//   "id": 123243,
+//   "question": "Uki ta contecendo?", 
+//   "student": "Zoru", 
+//   "class": "T3",
+//   "submitAt": "2021-01-01 10:12"
+// }
+
 export async function selectUnansweredQuestions() {
-//
+  const resolve = await connection.query(`
+    SELECT
+    question_id AS id,
+    question_text AS question,
+    created_by_student AS student,
+    created_by_class AS class,
+    created_at as 'createdAt'
+    FROM questions
+    WHERE answered = false
+
+  `)
+
 }
 
 export async function insertUser() {
