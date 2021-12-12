@@ -92,6 +92,7 @@ export async function answerQuestion(req: Request, res: Response) {
 
 export async function getQuestionList(req: Request, res: Response) {
   const questionList = await questionsService.getQuestions();
+  return res.send(questionList);
 }
 
 export async function vote(req: Request, res: Response) {

@@ -24,6 +24,14 @@ export interface QuestionInfo {
   points?: number;
 }
 
+export interface UnansweredQuestion {
+  id: number;
+  question: string;
+  student: string;
+  class: string;
+  submitAt: number;
+}
+
 export async function insertQuestion(questionInfo: NewQuestionInfo) {
   const { question, student, tags } = questionInfo;
 
@@ -116,14 +124,6 @@ export async function insertAnswer(answerInfo: NewAnswerInfo) {
   `, [questionId])
 }
 
-// {
-//   "id": 123243,
-//   "question": "Uki ta contecendo?", 
-//   "student": "Zoru", 
-//   "class": "T3",
-//   "submitAt": "2021-01-01 10:12"
-// }
-
 export async function selectUnansweredQuestions() {
   const resolve = await connection.query(`
     SELECT
@@ -134,9 +134,10 @@ export async function selectUnansweredQuestions() {
     created_at as 'createdAt'
     FROM questions
     WHERE answered = false
-
-  `)
-
+  `) //maybe order by date?
+  
+  const questionList: UnansweredQuestion[]  = resolve.rows
+  return questionList
 }
 
 export async function insertUser() {
