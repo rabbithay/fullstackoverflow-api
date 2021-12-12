@@ -7,6 +7,7 @@ import { newAnswerSchema } from '../schemas/newAnswerSchema';
 import { newQuestionSchema } from '../schemas/newQuestionSchema';
 import { positiveIntegerSchema } from '../schemas/positiveIntegerSchema';
 import * as questionsService from '../services/questions';
+import { validateObject } from '../services/utils';
 
 export interface NewQuestionInfo {
   question: string;
@@ -24,7 +25,7 @@ export interface NewAnswerInfo {
 export async function createNewQuestion(req: Request, res: Response) {
   const questionInfo: NewQuestionInfo = req.body;
 
-  const isValidBody = questionsService.validateObject({
+  const isValidBody = validateObject({
     object: questionInfo,
     schema: newQuestionSchema,
   });
@@ -39,7 +40,7 @@ export async function createNewQuestion(req: Request, res: Response) {
 
 export async function getQuestion(req: Request, res: Response) {
   const { id } = req.params;
-  const isValidParam = questionsService.validateObject({
+  const isValidParam = validateObject({
     object: { number: id },
     schema: positiveIntegerSchema,
   });
@@ -55,7 +56,7 @@ export async function getQuestion(req: Request, res: Response) {
 
 export async function answerQuestion(req: Request, res: Response) {
   const { id } = req.params;
-  const isValidParam = questionsService.validateObject({
+  const isValidParam = validateObject({
     object: { number: id },
     schema: positiveIntegerSchema,
   });
@@ -64,7 +65,7 @@ export async function answerQuestion(req: Request, res: Response) {
   }
 
   const answerBody: {answer: NewAnswerInfo['answer']} = req.body;
-  const isValidBody = questionsService.validateObject({
+  const isValidBody = validateObject({
     object: answerBody,
     schema: newAnswerSchema,
   });

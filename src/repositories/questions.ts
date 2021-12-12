@@ -140,13 +140,7 @@ export async function selectUnansweredQuestions() {
   return questionList
 }
 
-export async function insertUser() {
-//
-}
 
-export async function selectUsersByScore() {
-//
-}
 
 export async function updateQuestionInfo() {
 //
