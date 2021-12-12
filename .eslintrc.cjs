@@ -17,5 +17,6 @@ module.exports = {
   rules: {
     'no-unsafe-optional-chaining': 'off',
     'import/prefer-default-export': 0,
+    'import/extensions': 0,
   },
 };

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { NewQuestionInfo } from '../controllers/questions';
+import { NewAnswerInfo, NewQuestionInfo } from '../controllers/questions';
 import connection from '../database/database';
 
 export interface UserInfo {
@@ -82,8 +82,32 @@ export async function selectAnswerById(id: QuestionInfo['id']){
 
 }
 
-export async function insertAnswer() {
-//
+export async function selectUserByToken(token: UserInfo['token']){
+  const resolve = await connection.query(`
+    SELECT
+    user_id as id,
+    user_name as name,
+    user_class as class
+    FROM users
+    WHERE token = $1
+  `, [token])
+
+  if (resolve.rowCount === 0) return false
+
+  const {id, name, class}: UserInfo = resolve.rows[0]
+  const user = {id, name, class}
+
+  return user;
+}
+
+export async function insertAnswer(answerInfo: NewAnswerInfo) {
+  const {answer, questionId, answeredBy} = answerInfo;
+  const response = await connection.query(`
+    INSERT INTO answers
+    (question_id, answer_text, created_by)
+    VALUES ($1, $2, $3)
+    RETURNING question_id AS id
+  `, [questionId, answer, answeredBy]);
 }
 
 export async function selectUnansweredQuestions() {

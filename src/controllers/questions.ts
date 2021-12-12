@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 import { Request, Response } from 'express';
+import authValidate from '../schemas/authValidate';
 import { newAnswerSchema } from '../schemas/newAnswerSchema';
 import { newQuestionSchema } from '../schemas/newQuestionSchema';
 import { positiveIntegerSchema } from '../schemas/positiveIntegerSchema';
@@ -15,7 +16,9 @@ export interface NewQuestionInfo {
 }
 
 export interface NewAnswerInfo {
-  answer: string
+  answer: string,
+  questionId: number,
+  answeredBy: number
 }
 
 export async function createNewQuestion(req: Request, res: Response) {
@@ -60,14 +63,31 @@ export async function answerQuestion(req: Request, res: Response) {
     return res.sendStatus(404);
   }
 
-  const answerInfo: NewAnswerInfo = req.body;
+  const answerBody: {answer: NewAnswerInfo['answer']} = req.body;
   const isValidBody = questionsService.validateObject({
-    object: answerInfo,
+    object: answerBody,
     schema: newAnswerSchema,
   });
   if (!isValidBody) {
     return res.sendStatus(404);
   }
+
+  const auth = req.headers.authorization;
+  const token = authValidate(auth);
+  if (!token) return res.sendStatus(404);
+
+  const user = await questionsService.getUserByToken(token);
+  if (!user) return res.sendStatus(400);
+
+  const answer: NewAnswerInfo = {
+    answer: answerBody.answer,
+    questionId: Number(id),
+    answeredBy: user.id,
+  };
+
+  await questionsService.answerQuestion(answer);
+
+  return res.sendStatus(201);
 }
 
 export async function getQuestionList(req: Request, res: Response) {

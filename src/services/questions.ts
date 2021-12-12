@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 import Joi from 'joi';
-import { NewQuestionInfo } from '../controllers/questions';
+import { NewAnswerInfo, NewQuestionInfo } from '../controllers/questions';
 import * as questionRepositories from '../repositories/questions';
 
 export function validateObject({
@@ -26,4 +26,13 @@ export async function getQuestionById(id: number) {
   }
 
   return question;
+}
+
+export async function getUserByToken(token: string) {
+  const user = await questionRepositories.selectUserByToken(token);
+  return user;
+}
+
+export async function answerQuestion(answer: NewAnswerInfo) {
+  await questionRepositories.insertAnswer(answer);
 }

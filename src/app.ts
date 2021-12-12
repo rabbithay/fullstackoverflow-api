@@ -1,9 +1,9 @@
-import './setup';
+import './setup.ts';
 import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
-import routes from './routers/routesRouter';
-import { serverMiddlewareError } from './error/serverMiddlewareErro';
+import routes from './routers/routesRouter.ts';
+import { serverMiddlewareError } from './error/serverMiddlewareErro.ts';
 
 const app = express();
 app.use(cors());

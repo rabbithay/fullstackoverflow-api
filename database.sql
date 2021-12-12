@@ -27,7 +27,6 @@ CREATE TABLE "answers" (
 	CONSTRAINT "answers_pk" PRIMARY KEY ("answer_id")
 );
 
-ALTER TABLE "questions" ADD CONSTRAINT "questions_fk0" FOREIGN KEY ("created_by") REFERENCES "users"("user_id");
 
 ALTER TABLE "answers" ADD CONSTRAINT "answers_fk0" FOREIGN KEY ("question_id") REFERENCES "questions"("question_id");
 ALTER TABLE "answers" ADD CONSTRAINT "answers_fk1" FOREIGN KEY ("created_by") REFERENCES "users"("user_id");
