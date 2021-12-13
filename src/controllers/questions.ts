@@ -1,6 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable no-unused-vars */
 import { Request, Response } from 'express';
 import authValidate from '../schemas/authValidate';
 import { newAnswerSchema } from '../schemas/newAnswerSchema';
@@ -30,12 +27,10 @@ export async function createNewQuestion(req: Request, res: Response) {
     schema: newQuestionSchema,
   });
 
-  if (!isValidBody) {
-    return res.sendStatus(404);
-  }
+  if (!isValidBody) return res.sendStatus(400);
 
   const questionId = await questionsService.createQuestion(questionInfo);
-  return res.status(201).send(questionId);
+  return res.status(201).send({questionId});
 }
 
 export async function getQuestion(req: Request, res: Response) {
@@ -45,13 +40,10 @@ export async function getQuestion(req: Request, res: Response) {
     schema: positiveIntegerSchema,
   });
 
-  if (!isValidParam) {
-    return res.sendStatus(404);
-  }
+  if (!isValidParam) return res.sendStatus(400);
 
-  const question = questionsService.getQuestionById(Number(id));
-
-  return question;
+  const question = await questionsService.getQuestionById(Number(id));
+  return res.status(200).send(question);
 }
 
 export async function answerQuestion(req: Request, res: Response) {
@@ -60,25 +52,25 @@ export async function answerQuestion(req: Request, res: Response) {
     object: { number: id },
     schema: positiveIntegerSchema,
   });
-  if (!isValidParam) {
-    return res.sendStatus(404);
-  }
+  if (!isValidParam) return res.sendStatus(400);
 
   const answerBody: {answer: NewAnswerInfo['answer']} = req.body;
   const isValidBody = validateObject({
     object: answerBody,
     schema: newAnswerSchema,
   });
-  if (!isValidBody) {
-    return res.sendStatus(404);
-  }
+  if (!isValidBody) return res.sendStatus(400);
 
   const auth = req.headers.authorization;
   const token = authValidate(auth);
-  if (!token) return res.sendStatus(404);
+  if (!token) return res.sendStatus(400);
 
   const user = await questionsService.getUserByToken(token);
   if (!user) return res.sendStatus(400);
+
+  const question = await questionsService.getQuestionById(Number(id));
+  const isQuestionAnswered = question.answered;
+  if (isQuestionAnswered) return res.sendStatus(400);
 
   const answer: NewAnswerInfo = {
     answer: answerBody.answer,
@@ -93,7 +85,7 @@ export async function answerQuestion(req: Request, res: Response) {
 
 export async function getQuestionList(req: Request, res: Response) {
   const questionList = await questionsService.getQuestions();
-  return res.send(questionList);
+  return res.status(200).send(questionList);
 }
 
 export async function vote(req: Request, res: Response) {

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Request, Response } from 'express';
 import { v4 as uuid } from 'uuid';
 import { newUserSchema } from '../schemas/newUserSchema';

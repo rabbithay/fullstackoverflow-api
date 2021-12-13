@@ -1,15 +1,16 @@
 /* eslint-disable no-unused-vars */
 
 import {
-  ErrorRequestHandler, NextFunction, RequestHandler, Response,
+  Request, Response, NextFunction
 } from 'express';
 
 export async function serverMiddlewareError(
-  error: ErrorRequestHandler,
-  request: RequestHandler,
+  error: Error,
+  request: Request,
   response: Response,
   next: NextFunction,
 ) {
-  console.log({ error, request, response });
+  console.log('Middleware de erro: ', error);
+  // console.log({ error, request, response });
   return response.sendStatus(500);
 }

@@ -1,8 +1,6 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-unused-vars */
 import { NewAnswerInfo, NewQuestionInfo } from '../controllers/questions';
 import * as questionRepositories from '../repositories/questions';
+import { selectUserByToken } from '../repositories/users';
 
 export async function createQuestion(questionInfo: NewQuestionInfo) {
   const id = await questionRepositories.insertQuestion(questionInfo);
@@ -21,7 +19,7 @@ export async function getQuestionById(id: number) {
 }
 
 export async function getUserByToken(token: string) {
-  const user = await questionRepositories.selectUserByToken(token);
+  const user = await selectUserByToken(token);
   return user;
 }
 
