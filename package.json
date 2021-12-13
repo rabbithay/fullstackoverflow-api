@@ -1,48 +1,41 @@
 {
-  "name": "create-node-template",
-  "type": "module",
+  "name": "fullstackoverflow-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node src/server.js",
-    "test": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --silent",
-    "test:verbose": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --verbose",
-    "test:watch": "NODE_ENV=test npx jest --passWithNoTests --noStackTrace --runInBand --watch",
-    "dev": "NODE_ENV=dev nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js"
+    "start": "NODE_ENV=production node ./dist/server.js",
+    "dev": "NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts",
+    "build": "rm -rf ./dist && tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rabbithay/my-nodejs-template.git"
+    "url": "git+https://github.com/rabbithay/fullstackoverflow-api.git"
   },
   "keywords": [],
   "author": "https://github.com/rabbithay",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rabbithay/my-nodejs-template/issues"
+    "url": "https://github.com/rabbithay/fullstackoverflow-api/issues"
   },
-  "homepage": "https://github.com/rabbithay/my-nodejs-template#readme",
+  "homepage": "https://github.com/rabbithay/fullstackoverflow-api#readme",
   "dependencies": {
-    "bcrypt": "5.0.1",
     "cors": "2.8.5",
     "dotenv": "10.0.0",
-    "express": "4.17.1",
+    "express": "^4.17.1",
     "express-async-errors": "3.1.1",
     "joi": "17.4.3",
     "pg": "8.7.1",
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.16.4",
-    "@babel/preset-env": "7.16.4",
-    "babel-jest": "27.4.2",
-    "eslint": "8.3.0",
-    "eslint-config-airbnb-base": "15.0.0",
-    "eslint-plugin-import": "2.25.3",
-    "faker": "5.5.3",
-    "husky": "7.0.4",
-    "jest": "27.4.3",
-    "nodemon": "2.0.15",
-    "supertest": "6.1.6"
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.12",
+    "@types/pg": "^8.6.1",
+    "@types/uuid": "^8.3.3",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.3"
   }
 }
