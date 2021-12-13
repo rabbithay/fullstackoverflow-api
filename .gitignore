@@ -8,3 +8,6 @@
 .vscode
 .eslint.cjs
 .env
+
+#build
+dist

@@ -4,7 +4,7 @@ CREATE TABLE "questions" (
 	"question_tags" TEXT,
 	"created_by_student" TEXT NOT NULL,
 	"created_by_class" TEXT NOT NULL,
-	"created_at" timestamp with time zone NOT NULL DEFAULT 'NOW()',
+	"created_at" timestamp NOT NULL DEFAULT 'NOW()',
 	"answered" BOOLEAN NOT NULL DEFAULT 'false',
 	"question_score" integer NOT NULL DEFAULT '1',
 	CONSTRAINT "questions_pk" PRIMARY KEY ("question_id")
