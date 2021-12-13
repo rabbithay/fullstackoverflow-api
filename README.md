@@ -1,13 +1,25 @@
-# my nodejs template
+# Full Stack Overflow Developer
 
-## 🔍 About
+<p align="center">
+<img src='https://i.gifer.com/73Il.gif'>
+</p>
+<br>
+<br>
+
+## 🕹️ About
 
 <p>
-description</p>
+An API that allows you to submit and answer questions. Inspired by the functioning of a website (you know which one) that is the developer's best friend, with the difference that each question can only have one answer (let's hope this is the answer that works).</p>
 
 <br>
 
-## 🚂 How to run
+## 🗝️ How it works
+
+<p align="center">
+<a src=''>Documentation</a>
+</p>
+
+## 🚅 How to run
 
 ### Pre-requisites: Git, Node.js, nvm and Postgres
 
@@ -15,10 +27,10 @@ description</p>
 
 ```bash
 # clone this repository
-$ git clone <https://github.com/rabbithay/my-nodejs-template>
+$ git clone <https://github.com/rabbithay/fullstackoverflow-api>
 
 # access the project folder cmd/terminal
-$ cd my-nodejs-template
+$ cd fullstackoverflow-api
 
 # ensure that you're using the right version of node
 $ nvm use
@@ -36,23 +48,18 @@ $ yarn dev
 
 # the server will automatically start
 
-# run the tests
-$ yarn test
 ```
 
 <br>
 
-## 🧮 Tech Stack
+## 🧰 Tech Stack
 
 <p align="center">
-    <img alt="javascript" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+<img alt="typescript" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
 <img alt="postgres" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
 <img alt="nodejs" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
-<img alt="npm" src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"/>
-<img alt="jest" src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"/>
+<img alt="yarn" src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white"/>
 <img alt="expressjs" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
-<img alt="eslinter" src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white"/>
-
 </p>
 
 <br>
