@@ -1,23 +1,26 @@
 # Full Stack Overflow Developer
 
+
 <p align="center">
-<img src='https://i.gifer.com/73Il.gif'>
+  <img src="https://i.imgur.com/PrCh6lM.gif" alt="animated" />
 </p>
-<br>
+
 <br>
 
 ## 🕹️ About
 
 <p>
-An API that allows you to submit and answer questions. Inspired by the functioning of a website (you know which one) that is the developer's best friend, with the difference that each question can only have one answer (let's hope this is the answer that works).</p>
+An API that allows you to submit and answer questions. Inspired by the functioning of a website (you know which one) that is the developer's best friend, with the difference that each question can only have one answer (let's hope this is the answer that works).
+</p>
 
 <br>
 
 ## 🗝️ How it works
 
-<p align="center">
-<a src=''>Documentation</a>
-</p>
+### <p align="center"><a  href="https://github.com/rabbithay/fullstackoverflow-api/blob/main/documentation.md">Documentation</a></p>
+
+<br>
+
 
 ## 🚅 How to run
 
