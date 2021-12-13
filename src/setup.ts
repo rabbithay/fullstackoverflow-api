@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
+import './database/database'
 
-const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+const envFile = '.env';
 
 dotenv.config({
   path: envFile,

@@ -1,7 +1,18 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
-        "esModuleInterop": true,
-        "target": "ES6"
-    }
-}
+      "outDir": "dist",
+      "module": "commonjs",
+      "target": "es2019",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "rootDirs": [
+        "src",
+      ],
+      "baseUrl": "src",
+    },
+    "include": [
+      "src",
+    ],
+    "exclude": ["node_modules"]
+  }
