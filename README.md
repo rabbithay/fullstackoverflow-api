@@ -10,7 +10,7 @@
 ## 🕹️ About
 
 <p>
-An API that allows you to submit and answer questions. Inspired by the functioning of a website (you know which one) that is the developer's best friend, with the difference that each question can only have one answer (let's hope this is the answer that works).
+An API that allows you to submit and answer questions. Inspired by the functioning of a website (you know which one) that is the developer's best friend, with the difference that each question can have only one answer (let's hope this is the answer that works).
 </p>
 
 <br>
